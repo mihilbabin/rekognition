@@ -1,5 +1,6 @@
 import cv2
 
+
 class Capturer:
     def __init__(self, filename=None):
         if filename:

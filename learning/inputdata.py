@@ -21,9 +21,11 @@ EMOTIONS_LIST = [
     'Sad', 'Surprise', 'Neutral'
 ]
 
+
 def reconstruct(pix):
     pix_arr = np.fromiter(map(int, pix.split()), dtype=np.int)
     return pix_arr.reshape((48, 48))
+
 
 @decorators.timelog('Data preparation')
 def load_data(filepath, usage, sample_rate=0.3):
@@ -43,10 +45,12 @@ def load_data(filepath, usage, sample_rate=0.3):
     y_train = to_categorical(y_train.values)
     return x_train, y_train
 
+
 @decorators.timelog('Saving data')
 def save_data(x_train, y_train, filepath):
     np.save(f"{os.path.join(filepath, 'x_train')}", x_train)
     np.save(f"{os.path.join(filepath, 'y_train')}", y_train)
+
 
 if __name__ == "__main__":
     input_filepath = os.path.join(os.path.dirname(__file__), 'data', 'fer2013.csv')

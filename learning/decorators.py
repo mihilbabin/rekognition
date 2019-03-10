@@ -1,6 +1,7 @@
 import functools
 import time
 
+
 def timelog(message):
     def decorator(func):
         @functools.wraps(func)

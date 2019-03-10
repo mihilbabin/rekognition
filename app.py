@@ -1,8 +1,8 @@
 import argparse
 import os
-import cv2
 
 import capturer
+
 
 def main():
     flags = parse_flags()
@@ -11,6 +11,7 @@ def main():
     c = capturer.Capturer(flags.file)
     c.mainloop()
 
+
 def parse_flags():
     parser = argparse.ArgumentParser(
         description='Emotion recognizer',
@@ -18,6 +19,7 @@ def parse_flags():
     )
     parser.add_argument('-f', '--file', help='Video file for recognition')
     return parser.parse_args()
+
 
 if __name__ == "__main__":
     main()
