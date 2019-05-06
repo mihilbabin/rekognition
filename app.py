@@ -18,7 +18,7 @@ def parse_flags():
         epilog='Interactively recognizes emotions'
     )
     parser.add_argument('-f', '--file', help='Video file for recognition')
-    return parser.parse_args()
+    return parata(x_train, y_train, output_dir)ser.parse_args()
 
 
 if __name__ == "__main__":

@@ -2,7 +2,8 @@ import cv2
 
 
 class Capturer:
-    def __init__(self, filename=None):
+    def __init__(self, filename=None, model=None):
+        self.model = model
         if filename:
             self.input_stream = filename
             self.delay = 25
