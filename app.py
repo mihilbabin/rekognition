@@ -9,7 +9,7 @@ def main():
     flags = parse_flags()
     if flags.file and not os.path.exists(flags.file):
         raise FileNotFoundError('Source input not found')
-    model = load_model('model.h5')
+    model = load_model('learning/model.h5')
     c = capturer.Capturer(flags.file, model=model)
     c.mainloop()
 
