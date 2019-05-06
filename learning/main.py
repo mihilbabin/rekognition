@@ -21,8 +21,8 @@ def main():
     parser = CustomParser()
     args = parser.parse_args()
 
-    train_gen = ImageDataGenerator(rescale=args.rescale_rate)
-    validation_gen = ImageDataGenerator(rescale=args.rescale_rate)
+    train_gen = ImageDataGenerator(rescale=1.0/args.rescale_rate)
+    validation_gen = ImageDataGenerator(rescale=1.0/args.rescale_rate)
 
     train_data = train_gen.flow_from_directory(
         args.train_dir,
@@ -44,15 +44,16 @@ def main():
     cnn.model.compile(
         loss='categorical_crossentropy',
         metrics=['accuracy'],
-        optimizer=Adam(lr=1e-5, decay=1e-6)
+        optimizer=Adam(lr=.0001, decay=1e-6)
     )
 
     model_data = cnn.model.fit_generator(
         train_data,
         validation_data=validation_data,
         epochs=EPOCHS,
-        steps_per_epoch=len(train_data.labels) // BATCH_SIZE,
-        validation_steps=len(validation_data.labels) // BATCH_SIZE
+        steps_per_epoch=train_data.samples // BATCH_SIZE,
+        validation_steps=validation_data.samples // BATCH_SIZE,
+        workers=8
     )
 
     save_history('history.pickle', model_data.history)
