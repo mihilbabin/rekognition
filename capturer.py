@@ -2,7 +2,6 @@ import cv2
 import numpy as np
 
 
-
 class Capturer:
     def __init__(self, filename=None, model=None):
         self.model = model
@@ -23,8 +22,12 @@ class Capturer:
             faces = facecasc.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5, minSize=(64, 64))
             for (x, y, w, h) in faces:
                 cv2.rectangle(frame, (x, y), (x+w, y+h+10), (255, 0, 0), 2)
-                # roi_gray = gray[y:y + h, x:x + w]
-                # cropped_img = np.expand_dims(np.expand_dims(cv2.resize(roi_gray, (48, 48)), -1), 0)
+                roi_gray = gray[y:y + h, x:x + w]
+                cropped_img = np.expand_dims(np.expand_dims(cv2.resize(roi_gray, (48, 48)), -1), 0)
+                if self.model:
+                    prediction = model.predict(cropped_img)
+                    maxindex = int(np.argmax(prediction))
+                    cv2.putText(frame, emotion_dict[maxindex], (x+20, y-60), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
             cv2.imshow('Video', cv2.resize(frame, (1280, 720), interpolation=cv2.INTER_CUBIC))
             if cv2.waitKey(self.delay) & 0xFF == 27:
                 break
