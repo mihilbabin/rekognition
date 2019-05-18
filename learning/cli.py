@@ -23,17 +23,17 @@ class CustomParser(argparse.ArgumentParser):
             help='Name of the output model weights'
         )
         self.add_argument(
-            '-t', '--training',
-            dest='training_size',
-            type=int,
-            default=80,
-            help='Percent of dataset to use for Training'
-        )
-        self.add_argument(
             '-r', '--rescale',
             dest='rescale_rate',
             type=int,
             default=255,
             help='Each image rescale rate'
+        )
+        self.add_argument(
+            '-t', '--type',
+            dest='cnn_type',
+            default='simple',
+            choices=('simple', 'multilayer'),
+            help='Network type'
         )
 

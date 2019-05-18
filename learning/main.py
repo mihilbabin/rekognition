@@ -4,7 +4,7 @@ from keras.preprocessing.image import ImageDataGenerator
 from keras.optimizers import Adam
 
 from cli import CustomParser
-from cnn import CNN
+from cnn import CNN, MultilayerCNN
 
 BATCH_SIZE = 64
 IMG_SHAPE = (48, 48, 1)
@@ -23,6 +23,7 @@ def main():
 
     train_gen = ImageDataGenerator(rescale=1.0/args.rescale_rate)
     validation_gen = ImageDataGenerator(rescale=1.0/args.rescale_rate)
+    cnn_type = args.cnn_type
 
     train_data = train_gen.flow_from_directory(
         args.train_dir,
@@ -40,7 +41,11 @@ def main():
         class_mode='categorical'
     )
 
-    cnn = CNN(classes_num=CLASSES_NUM, input_shape=IMG_SHAPE)
+    if cnn_type == 'simple':
+        cnn = CNN(classes_num=CLASSES_NUM, input_shape=IMG_SHAPE)
+    else:
+        cnn = MultilayerCNN(classes_num=CLASSES_NUM, input_shape=IMG_SHAPE)
+
     cnn.model.compile(
         loss='categorical_crossentropy',
         metrics=['accuracy'],
