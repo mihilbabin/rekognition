@@ -13,7 +13,7 @@ lazy-object-proxy==1.3.1
 Markdown==3.0.1
 mccabe==0.6.1
 numpy==1.16.1
-opencv-python==4.0.0.21
+opencv-python==4.1.0
 pandas==0.24.1
 protobuf==3.6.1
 pylint==2.2.2
@@ -24,7 +24,7 @@ scipy==1.2.0
 six==1.12.0
 tb-nightly==1.13.0a20190201
 termcolor==1.1.0
-tf-estimator-nightly==1.13.0.dev2019012901
-tf-nightly==1.13.0.dev20190202
+tf-estimator==1.13.1
+tf==1.13.0.dev20190202
 Werkzeug==0.14.1
 wrapt==1.11.1
