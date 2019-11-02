@@ -26,5 +26,5 @@ tb-nightly==1.13.0a20190201
 termcolor==1.1.0
 tf-estimator==1.13.1
 tf==1.13.0.dev20190202
-Werkzeug==0.14.1
+Werkzeug==0.15.3
 wrapt==1.11.1
